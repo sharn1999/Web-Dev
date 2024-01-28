@@ -4,6 +4,22 @@
         <meta charset="utf-8">
         <title>Project: Event invite</title>
         <style>
+
+            body{
+                text-align: center;
+                padding-top: 100px;
+                padding-bottom: 40px;
+                background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            *{
+                font-family: sans-serif;
+                color: rgb(228, 228, 228);
+            }
             p{
                 font-family: sans-serif;
             }
@@ -13,45 +29,61 @@
             }
             h2{
                 font-weight: 400;
-                color: blue;
+                
             }
-            th{
-                color: green;
-                font-size: 32px;
+            ul{
+                padding-left: 0;
+                width: max-content;
             }
-            td{
-                font-size: 24px;
-                color: red;
+            ul li{
+                margin-bottom: 20px;
+                list-style-type: none;
+                background-color: rgb(151, 75, 150);
+                width: 100%;
+                padding: 10px 0;
+                border-radius: 100px;
+            }
+
+            ul li span{
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .line{
+                width: 100px;
+                position: absolute;
+                top: 10px;
+                left:50%;
+                transform:translate(-50%, 0);
+            }
+
+            .cake{
+                margin: 0 auto;
+                width: 50%;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+            .cake img{
+                width: 100%;
             }
         </style>
     </head>
     <body>
+        <img class="line" src="https://cdn-icons-png.flaticon.com/512/6664/6664576.png" alt="line">
+        <h1>Вы приглашены!</h1>
+        <h2>На мое день рождения!</h2>
         
-        <h1>You're invited!</h1>
-        <h2>To something!</h2>
-        
-        <p>The <span>details</span>:</p>
+        <p>Детали:</p>
         <ul>
-            <li>first detail</li>
-            <li>second detail</li>
-            <li>third detail</li>
+            <li>Время: <span>В 18:00</span></li>
+            <li>Место: <span> Ресторан "Бауырсак"</span></li>
+            <li>Дата: <span>26 мая</span></li>
         </ul>
         
-        <img alt="cat" src="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/animals/cat.png">
+        <div class="cake">
+            <img alt="cake" src="https://prostokvashino.ru/upload/iblock/ecf/ecfa22bcce561a82d0db27ad3c174ad8.jpg">
+        </div>
         
-        <table>
-            <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-            </tr>
-            
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-        </table>
         
     </body>
 </html>
