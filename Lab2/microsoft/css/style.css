@@ -38,6 +38,7 @@ nav a:hover{
 
 nav img{
     width: 110px;
+    cursor: pointer;
 }
 
 .profile{
@@ -53,6 +54,19 @@ nav img{
     display: flex;
     align-items: center;
     gap: 6px;
+    border-bottom: 2px solid transparent;
+}
+
+.profile a:hover{
+    border-bottom: 2px solid #262626;
+}
+
+.profile a:last-child:hover{
+    border: none;
+}
+
+.profile a:last-child{
+    border: none;
 }
 
 .profile a img{
@@ -92,19 +106,28 @@ nav img{
     text-decoration: none;
 }
 
+.button:hover{
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(0,0,0,.13), 0 0 0.0625rem 0 rgba(0,0,0,.11);
+    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
+}
+
 .blocks__wrapper{
     display: flex;
     justify-content: space-between;
 }
 
 .blocks__block{
-    width: 24%;
+    width: 23.7%;
     text-decoration: none;
     color: #000;
 }
 
 .blocks__block img{
     width: 100%;
+}
+
+.blocks__block p{
+    line-height: 24px;
 }
 
 .blocks__title{
@@ -115,11 +138,28 @@ nav img{
 }
 
 .blocks__link{
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     color: #0067b8;
+    margin-top: 0;
 
+}
+
+.blocks__link:hover{
+    text-decoration: underline;
+}
+
+.blocks__link:hover img{
+    transform: translate(0.25em,0);
 }
 
 .blocks{
     margin-top: 100px;
+}
+
+.blocks__link img{
+    width: 16px;
+    height: 16px;
+    transition: .6s cubic-bezier(.19,1,.22,1);
 }
