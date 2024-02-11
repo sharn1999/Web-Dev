@@ -3,10 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const addInput = document.querySelector(".promo form input");
     const addForm = document.querySelector(".promo form");
     let counter = 0;
-
-    addForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let value = addInput.value;
+    let storageJSON;
+    
+    function createTask(text){
         addWrap.style.border = "1px solid #c3c3c3";
 
         const elem = document.createElement('div');
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <input id="check${counter}" type="checkbox">
                     <label for="check${counter}"></label>
                 </div>
-                <p>${value}</p>
+                <p  class="checkValue">${text}</p>
             </div>
             <button>
                 <svg fill="#fe4d4d" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -37,17 +36,83 @@ document.addEventListener('DOMContentLoaded', () => {
         counter++;
         addWrap.append(elem);
 
-        addForm.reset();
+        counter++;
+    }
 
-        const deleteBtns = document.querySelectorAll(".promo__tasks button");
-        deleteBtns.forEach((el) => {
+    function deleteTask(){
+        let deleteBtns = document.querySelectorAll(".promo__tasks button");
+
+        deleteBtns.forEach((el, i) => {
             el.onclick = function(){
                 el.parentElement.remove();
-                const deleteBtns = document.querySelectorAll(".promo__tasks button");
+                
+                deleteBtns = document.querySelectorAll(".promo__tasks button");
+    
                 if(deleteBtns.length == 0){
                     addWrap.style.border = "none";
                 }
+    
+                checks = document.querySelectorAll('.checkValue');
+    
+                let storage =[];
+    
+                checks.forEach((el) => {
+                    storage.push(el.textContent);
+                })
+    
+                storageJSON = JSON.stringify(storage);
+                localStorage.clear();
+                localStorage.setItem('items', storageJSON);
+    
             }
+        });
+    }
+
+    function checkTask(){
+        let checkBoxBlock = document.querySelectorAll(".promo__tasks-block");
+        checkBoxBlock.forEach(el => {
+            el.addEventListener('click', () => {
+                if(el.querySelector("input").checked){
+                    el.querySelector(".checkValue").style.textDecoration = "line-through";
+                } else{
+                    el.querySelector(".checkValue").style.textDecoration = "none";
+                }
+            })
         })
+    }
+
+    addForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+
+        let value = addInput.value;
+        createTask(value);
+        addForm.reset();
+
+        checkTask();
+        
+        let checks = document.querySelectorAll('.checkValue');
+        let storage =[];
+        checks.forEach((el) => {
+            storage.push(el.textContent);
+        })
+
+        storageJSON = JSON.stringify(storage);
+        localStorage.setItem('items', storageJSON);
+
+
+
+        deleteTask();
+
     });
+    
+    let getArr = localStorage.getItem('items');
+    getArr = JSON.parse(getArr);
+    getArr.forEach((el) => {
+        createTask(el);
+    })
+
+    deleteTask();
+    checkTask()
+
 });

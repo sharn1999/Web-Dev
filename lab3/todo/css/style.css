@@ -73,11 +73,19 @@
 .promo__tasks-task button svg{
     width: 16px;
     height: 16px;
+    transition: all .3s;
+}
+
+.promo__tasks-task button:hover svg{
+    width: 18px;
+    height: 18px;
+    fill: #a51111;
 }
 
 .checkbox-block input{
     opacity: 0;
     position: absolute;
+    cursor: pointer;
 }
 
 .checkbox-block input ~ label::before{
@@ -92,6 +100,7 @@
     margin: 0.25em;
     display: inline-block;
     margin-right: 12px;
+    cursor: pointer;
 }
 
 .checkbox-block input:checked ~ label::before {
