@@ -86,6 +86,7 @@
     opacity: 0;
     position: absolute;
     cursor: pointer;
+    visibility: hidden;
 }
 
 .checkbox-block input ~ label::before{
@@ -103,9 +104,19 @@
     cursor: pointer;
 }
 
-.checkbox-block input:checked ~ label::before {
+.checkTask input ~ label::before {
     color: #0066FF;
     border: 1px solid #0066FF;
+}
+
+.checkTask ~ .checkValue{
+    text-decoration: line-through;
+}
+
+.checkValue{
+    word-wrap: break-word;
+    max-width: 90%;
+    width: 100%;
 }
 
 @media (max-width: 576px){
@@ -117,5 +128,13 @@
     }
     .promo__tasks-task{
         padding: 8px 20px;
+    }
+
+    .checkValue{
+        max-width: 80%;
+    }
+    .promo__tasks-task{
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }

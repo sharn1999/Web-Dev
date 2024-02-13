@@ -3,7 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const addInput = document.querySelector(".promo form input");
     const addForm = document.querySelector(".promo form");
     let counter = 0;
-    let storageJSON;
+
+    getData();
+    deleteTask();
+
+    if(addWrap.querySelectorAll(".promo__tasks-task").length > 0){
+        addWrap.style.border = "1px solid #c3c3c3";
+    }
+
+    addWrap.addEventListener('click', (e) => {
+        if(e.target.tagName === "LABEL"){
+            const checkBlock = e.target.parentElement;
+            checkBlock.classList.toggle("checkTask");
+            saveData();
+        } 
+    })
     
     function createTask(text){
         addWrap.style.border = "1px solid #c3c3c3";
@@ -12,13 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         elem.classList.add("promo__tasks-task");
 
         elem.innerHTML = `
-            <div class="promo__tasks-block">
-                <div class="checkbox-block">
-                    <input id="check${counter}" type="checkbox">
-                    <label for="check${counter}"></label>
-                </div>
-                <p  class="checkValue">${text}</p>
+            <div class="checkbox-block">
+                <input id="check${counter}" type="checkbox">
+                <label for="check${counter}"></label>
             </div>
+            <p  class="checkValue">${text}</p>
             <button>
                 <svg fill="#fe4d4d" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                     viewBox="0 0 900.5 900.5" xml:space="preserve"
@@ -34,15 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>
         `;
         counter++;
-        addWrap.append(elem);
+        addWrap.prepend(elem);
 
-        counter++;
     }
 
     function deleteTask(){
         let deleteBtns = document.querySelectorAll(".promo__tasks button");
 
-        deleteBtns.forEach((el, i) => {
+        deleteBtns.forEach((el) => {
             el.onclick = function(){
                 el.parentElement.remove();
                 
@@ -51,68 +62,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(deleteBtns.length == 0){
                     addWrap.style.border = "none";
                 }
-    
-                checks = document.querySelectorAll('.checkValue');
-    
-                let storage =[];
-    
-                checks.forEach((el) => {
-                    storage.push(el.textContent);
-                })
-    
-                storageJSON = JSON.stringify(storage);
-                localStorage.clear();
-                localStorage.setItem('items', storageJSON);
-    
+                saveData()
             }
         });
     }
 
-    function checkTask(){
-        let checkBoxBlock = document.querySelectorAll(".promo__tasks-block");
-        checkBoxBlock.forEach(el => {
-            el.addEventListener('click', () => {
-                if(el.querySelector("input").checked){
-                    el.querySelector(".checkValue").style.textDecoration = "line-through";
-                } else{
-                    el.querySelector(".checkValue").style.textDecoration = "none";
-                }
-            })
-        })
+
+
+    function saveData(){
+        localStorage.setItem('items', addWrap.innerHTML);
+        localStorage.setItem("counter", counter);
+    }
+
+    function getData(){
+        addWrap.innerHTML = localStorage.getItem('items');
+        counter = localStorage.getItem("counter");
     }
 
     addForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-
         let value = addInput.value;
         createTask(value);
         addForm.reset();
 
-        checkTask();
-        
-        let checks = document.querySelectorAll('.checkValue');
-        let storage =[];
-        checks.forEach((el) => {
-            storage.push(el.textContent);
-        })
 
-        storageJSON = JSON.stringify(storage);
-        localStorage.setItem('items', storageJSON);
-
-
-
+        saveData();
         deleteTask();
 
     });
-    
-    let getArr = localStorage.getItem('items');
-    getArr = JSON.parse(getArr);
-    getArr.forEach((el) => {
-        createTask(el);
-    })
-
-    deleteTask();
-    checkTask()
 
 });
