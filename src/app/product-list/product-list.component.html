@@ -1,0 +1,32 @@
+<h2 class="title">Продукты</h2>
+<div class="line"></div>
+<div *ngFor="let product of products">
+
+    <div class="product__wrapper">
+        <div class="product__img">
+            <img [src]="product.src" alt="product">
+        </div>
+        <div class="product__content">
+            <h3 class="product__content-title">
+                <a [title]="product.name + ' details'" [href]="product.link" target="_blank">
+                  {{ product.name }}
+                </a>
+            </h3>
+            <p *ngIf="product.description">
+                Описание: {{ product.description }}
+            </p>
+            <p *ngIf="product.description">
+                Рейтинг: {{ product.rating }}
+            </p>
+            <div class="product__content-wrap">
+                <p class="product__content-price">{{ product.price }} ₸</p>
+                <button type="button" (click)="shareViaTelegram(product)">
+                    Поделиться
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
