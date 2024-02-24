@@ -1,0 +1,16 @@
+li{
+    list-style: none;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #e5e5e5;
+    transition: all .3s;
+}
+
+li:hover{
+    background-color: #e5e5e5;
+}
+
+.active{
+    background-color: #bbbbbb;
+}
+    

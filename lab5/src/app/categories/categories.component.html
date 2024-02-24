@@ -1,0 +1,6 @@
+
+<ul class="items" *ngFor="let category of categories"
+[class]="active === category ? 'active' : ''"
+(click)="addFilter($event, category)">
+    <li>{{category.category}}</li>
+</ul>

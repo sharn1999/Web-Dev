@@ -1,0 +1,14 @@
+<h2 class="title">Продукты</h2>
+<div class="line"></div>
+
+
+    <div class="product__block">
+        <app-categories class="categories"></app-categories>
+        <div class="product__wrapper">
+            <div *ngFor="let product of products">
+                <app-product-item [product] = "product"></app-product-item>
+                
+
+            </div>
+        </div>
+    </div>

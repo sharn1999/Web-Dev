@@ -1,0 +1,30 @@
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: #e5e5e5;
+    margin: 20px 0;
+}
+
+.title{
+    font-size: 36px;
+    font-weight: 700;
+}
+
+
+.categories{
+    width: 20%;
+}
+
+.product__wrapper{
+    width: 80%;
+}
+
+.product__block{
+    display: flex;
+}
+
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+*/
