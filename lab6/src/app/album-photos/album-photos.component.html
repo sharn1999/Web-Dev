@@ -1,0 +1,8 @@
+<a href="javascript:void(0)" (click)="goBack()">Return Back</a>
+
+<div class="image-wrap">
+    <div  *ngFor="let image of data">
+        <img [src]='image.thumbnailUrl' alt="img">
+        <h3>{{image.title}}</h3>
+    </div>
+</div>

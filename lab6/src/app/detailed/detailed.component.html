@@ -1,0 +1,15 @@
+<div *ngIf="album;else loading">
+    <a  [routerLink]="['/albums']">Return Back</a>
+
+    <p *ngIf = "album">{{album.title}}</p>
+    <form #f="ngForm" (ngSubmit)="editAlbum(f)">
+        <input name="title" #title="ngModel" ngModel placeholder="Edit Album Title" type="text" required>
+        <button type="submit">Save</button>
+    </form>
+
+    <a  [routerLink]="['/albums', album.id, 'photos']">Photos</a>
+</div>
+
+<ng-template #loading>
+    Loading...
+</ng-template>

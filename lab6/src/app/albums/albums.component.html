@@ -1,0 +1,12 @@
+ <h2>Create Album</h2>
+ <form #f="ngForm" (ngSubmit)="createAlbum(f)">
+    <input name="title" #title="ngModel" ngModel type="text" required>
+    <button type="submit">Create</button>
+ </form>
+
+<div class="wrap" *ngFor="let el of data">
+    <div class="wrap__item">
+        <a [routerLink]="['/albums', el.id]">{{el.title}}</a>
+        <button (click)="deleteAlbum(el.id)">Delete</button>
+    </div>
+</div>
